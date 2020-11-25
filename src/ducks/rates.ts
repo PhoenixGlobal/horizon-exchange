@@ -1,7 +1,7 @@
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import get from 'lodash/get';
 
-import snxJSConnector from '../utils/snxJSConnector';
+import hznJSConnector from '../utils/hznJSConnector';
 import { bigNumberFormatter, parseBytes32String } from '../utils/formatters';
 import { SYNTHS_MAP, CurrencyKey } from '../constants/currency';
 import { RootState } from './types';
@@ -79,7 +79,7 @@ export const { fetchRatesRequest, fetchRatesSuccess, fetchRatesFailure } = rates
 // @ts-ignore
 function* fetchRates() {
 	// @ts-ignore
-	const { synthSummaryUtilContract } = snxJSConnector;
+	const { synthSummaryUtilContract } = hznJSConnector;
 
 	try {
 		let exchangeRates: Rates = {};

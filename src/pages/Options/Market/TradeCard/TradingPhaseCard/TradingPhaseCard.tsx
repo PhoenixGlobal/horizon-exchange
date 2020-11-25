@@ -4,7 +4,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import { queryCache, AnyQueryKey } from 'react-query';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { normalizeGasLimit } from 'utils/transactions';
 
 import { TradeCardPhaseProps } from 'pages/Options/types';
@@ -77,7 +77,7 @@ const TradingPhaseCard: FC<TradingPhaseCardProps> = ({
 		const fetchGasLimit = async () => {
 			if (!isWalletConnected) return;
 			try {
-				const BOMContractWithSigner = BOMContract.connect((snxJSConnector as any).signer);
+				const BOMContractWithSigner = BOMContract.connect((hznJSConnector as any).signer);
 				const gasEstimate = await BOMContractWithSigner.estimate.claimOptions();
 				setGasLimit(normalizeGasLimit(Number(gasEstimate)));
 			} catch (e) {
@@ -93,7 +93,7 @@ const TradingPhaseCard: FC<TradingPhaseCardProps> = ({
 		try {
 			setTxErrorMessage(null);
 			setIsClaiming(true);
-			const BOMContractWithSigner = BOMContract.connect((snxJSConnector as any).signer);
+			const BOMContractWithSigner = BOMContract.connect((hznJSConnector as any).signer);
 			const tx = (await BOMContractWithSigner.claimOptions()) as ethers.ContractTransaction;
 
 			const sharedPendingTxProps = {

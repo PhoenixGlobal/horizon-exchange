@@ -3,7 +3,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import {
 	updateWalletReducer,
 	updateWalletPaginatorIndex,
@@ -44,7 +44,7 @@ const useGetWallets = () => {
 		setIsLoading(true);
 		const getWallets = async () => {
 			try {
-				const nextWalletAddresses = await snxJSConnector.signer.getNextAddresses(
+				const nextWalletAddresses = await hznJSConnector.signer.getNextAddresses(
 					walletIndex,
 					WALLET_PAGE_SIZE
 				);
@@ -75,9 +75,9 @@ const useGetWallets = () => {
 					nextWalletsWithBalances.push({
 						address: nextWallet.address,
 						balances: {
-							snxBalance: await snxJSConnector.snxJS.Synthetix.collateral(nextWallet.address),
-							sUSDBalance: await snxJSConnector.snxJS.sUSD.balanceOf(nextWallet.address),
-							ethBalance: await snxJSConnector.provider.getBalance(nextWallet.address),
+							snxBalance: await hznJSConnector.snxJS.Synthetix.collateral(nextWallet.address),
+							sUSDBalance: await hznJSConnector.snxJS.sUSD.balanceOf(nextWallet.address),
+							ethBalance: await hznJSConnector.provider.getBalance(nextWallet.address),
 						},
 					});
 				}
@@ -189,7 +189,7 @@ const WalletAddressSelector = ({
 							onWalletSelection={(wallet, index) => {
 								const walletIndex = walletPaginatorIndex * WALLET_PAGE_SIZE + index;
 								if (isHardwareWallet) {
-									snxJSConnector.signer.setAddressIndex(walletIndex);
+									hznJSConnector.signer.setAddressIndex(walletIndex);
 								}
 								updateWalletReducer({ currentWallet: wallet.address });
 								toggleWalletPopup(false);

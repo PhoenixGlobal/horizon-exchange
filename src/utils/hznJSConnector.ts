@@ -12,7 +12,7 @@ import {
 import { synthSummaryUtilContract } from './contracts/synthSummaryUtilContract';
 import binaryOptionsMarketDataContract from './contracts/binaryOptionsMarketDataContract';
 
-type SnxJSConnector = {
+type HznJSConnector = {
 	initialized: boolean;
 	snxJS: SynthetixJs;
 	synths: SynthetixJs['contractSettings']['synths'];
@@ -30,7 +30,7 @@ type SnxJSConnector = {
 };
 
 // @ts-ignore
-const snxJSConnector: SnxJSConnector = {
+const hznJSConnector: HznJSConnector = {
 	initialized: false,
 	signers: SynthetixJs.signers,
 
@@ -64,7 +64,7 @@ const connectToMetamask = async (networkId: NetworkId, networkName: string) => {
 		unlocked: false,
 	};
 	try {
-		const accounts = await snxJSConnector.signer.getNextAddresses();
+		const accounts = await hznJSConnector.signer.getNextAddresses();
 		if (accounts && accounts.length > 0) {
 			return {
 				...walletState,
@@ -95,7 +95,7 @@ const connectToCoinbase = async (networkId: NetworkId, networkName: string) => {
 		unlocked: false,
 	};
 	try {
-		const accounts = await snxJSConnector.signer.getNextAddresses();
+		const accounts = await hznJSConnector.signer.getNextAddresses();
 		if (accounts && accounts.length > 0) {
 			return {
 				...walletState,
@@ -138,8 +138,8 @@ const connectToWalletConnect = async (networkId: NetworkId, networkName: string)
 	};
 	try {
 		// @ts-ignore
-		await snxJSConnector.signer.provider._web3Provider.enable();
-		const accounts = await snxJSConnector.signer.getNextAddresses();
+		await hznJSConnector.signer.provider._web3Provider.enable();
+		const accounts = await hznJSConnector.signer.getNextAddresses();
 		if (accounts && accounts.length > 0) {
 			return {
 				...walletState,
@@ -164,7 +164,7 @@ const connectToPortis = async (networkId: NetworkId, networkName: string) => {
 		unlocked: false,
 	};
 	try {
-		const accounts = await snxJSConnector.signer.getNextAddresses();
+		const accounts = await hznJSConnector.signer.getNextAddresses();
 		if (accounts && accounts.length > 0) {
 			return {
 				...walletState,
@@ -232,11 +232,11 @@ export const setSigner = ({
 	networkName: string;
 }) => {
 	// @ts-ignore
-	const signer = new snxJSConnector.signers[type](
+	const signer = new hznJSConnector.signers[type](
 		getSignerConfig({ type, networkId, derivationPath, networkName })
 	);
 
-	snxJSConnector.setContractSettings({
+	hznJSConnector.setContractSettings({
 		networkId,
 		signer,
 	});
@@ -279,4 +279,4 @@ export const connectToWallet = async ({
 	}
 };
 
-export default snxJSConnector;
+export default hznJSConnector;

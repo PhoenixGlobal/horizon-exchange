@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { takeLatest, put, all } from 'redux-saga/effects';
 
 import { RootState } from './types';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 export type AppSliceState = {
 	isReady: boolean;
@@ -73,7 +73,7 @@ export const {
 function* fetchSystemStatus() {
 	const {
 		snxJS: { SystemStatus, DappMaintenance },
-	} = snxJSConnector as any;
+	} = hznJSConnector as any;
 	try {
 		const [isSystemSuspended, isPVT] = yield all([
 			SystemStatus.isSystemUpgrading(),

@@ -2,7 +2,7 @@ import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 
 import { LOCAL_STORAGE_KEYS } from 'constants/storage';
 
-import { setSigner } from 'utils/snxJSConnector';
+import { setSigner } from 'utils/hznJSConnector';
 import { getAddress } from 'utils/formatters';
 import { defaultNetwork, NetworkId } from 'utils/networkUtils';
 import { RootState } from 'ducks/types';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import snxJSConnector, { connectToWallet } from 'utils/snxJSConnector';
+import hznJSConnector, { connectToWallet } from 'utils/hznJSConnector';
 import {
 	hasEthereumInjected,
 	SUPPORTED_WALLETS,
@@ -52,8 +52,8 @@ const WalletTypeSelector = ({
 			if (walletStatus.walletType === METAMASK) {
 				onMetamaskAccountChange(async (accounts) => {
 					if (accounts && accounts.length > 0) {
-						const signer = new snxJSConnector.signers[METAMASK]({});
-						snxJSConnector.setContractSettings({
+						const signer = new hznJSConnector.signers[METAMASK]({});
+						hznJSConnector.setContractSettings({
 							networkId: walletStatus.networkId,
 							signer,
 						});

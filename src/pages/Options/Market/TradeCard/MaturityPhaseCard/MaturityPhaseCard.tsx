@@ -15,7 +15,7 @@ import {
 import Card from 'components/Card';
 import NetworkFees from 'pages/Options/components/NetworkFees';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { normalizeGasLimit } from 'utils/transactions';
 import { useBOMContractContext } from '../../contexts/BOMContractContext';
 
@@ -83,7 +83,7 @@ const MaturityPhaseCard: FC<MaturityPhaseCardProps> = ({
 		const fetchGasLimit = async () => {
 			if (!isWalletConnected) return;
 			try {
-				const BOMContractWithSigner = BOMContract.connect((snxJSConnector as any).signer);
+				const BOMContractWithSigner = BOMContract.connect((hznJSConnector as any).signer);
 				const gasEstimate = await BOMContractWithSigner.estimate.exerciseOptions();
 				setGasLimit(normalizeGasLimit(Number(gasEstimate)));
 			} catch (e) {
@@ -99,7 +99,7 @@ const MaturityPhaseCard: FC<MaturityPhaseCardProps> = ({
 		try {
 			setTxErrorMessage(null);
 			setIsExercising(true);
-			const BOMContractWithSigner = BOMContract.connect((snxJSConnector as any).signer);
+			const BOMContractWithSigner = BOMContract.connect((hznJSConnector as any).signer);
 			const tx = (await BOMContractWithSigner.exerciseOptions()) as ethers.ContractTransaction;
 
 			addOptionsPendingTransaction({

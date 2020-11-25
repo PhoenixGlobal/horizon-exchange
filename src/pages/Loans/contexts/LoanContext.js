@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 const LoanContext = createContext(null);
 
@@ -11,7 +11,7 @@ export const LoanProvider = ({ children }) => {
 		const getSelectedContract = async () => {
 			const {
 				snxJS: { EtherCollateral, EtherCollateralsUSD },
-			} = snxJSConnector;
+			} = hznJSConnector;
 			if (contractType === 'sETH') {
 				setContract(EtherCollateral.contract);
 			} else {

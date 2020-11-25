@@ -6,7 +6,7 @@ import BiddingPhaseCard from './BiddingPhaseCard';
 import TradingPhaseCard from './TradingPhaseCard';
 import MaturityPhaseCard from './MaturityPhaseCard';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import { RootState } from 'ducks/types';
 import { getIsWalletConnected, getCurrentWalletAddress } from 'ducks/wallet/walletDetails';
@@ -41,7 +41,7 @@ const TradeCard: FC<TradeCardProps> = ({ isWalletConnected, currentWalletAddress
 			currentWalletAddress as string
 		),
 		async () => {
-			const result = await (snxJSConnector as any).binaryOptionsMarketDataContract.getAccountMarketData(
+			const result = await (hznJSConnector as any).binaryOptionsMarketDataContract.getAccountMarketData(
 				optionsMarket.address,
 				currentWalletAddress
 			);

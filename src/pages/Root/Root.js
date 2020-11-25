@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { getEthereumNetwork } from 'utils/networkUtils';
 import { getExchangeData } from 'dataFetcher';
 
@@ -49,13 +49,13 @@ const Root = ({
 		const init = async () => {
 			const { networkId, name } = await getEthereumNetwork();
 
-			if (!snxJSConnector.initialized) {
-				snxJSConnector.setContractSettings({ networkId });
+			if (!hznJSConnector.initialized) {
+				hznJSConnector.setContractSettings({ networkId });
 			}
 
 			updateNetworkSettings({ networkId, networkName: name.toLowerCase() });
 
-			const synths = snxJSConnector.snxJS.contractSettings.synths.filter((synth) => synth.asset);
+			const synths = hznJSConnector.snxJS.contractSettings.synths.filter((synth) => synth.asset);
 
 			setAvailableSynths({ synths });
 			setAppReady();

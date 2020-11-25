@@ -4,7 +4,7 @@ import styled, { ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import isEmpty from 'lodash/isEmpty';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import Card from 'components/Card';
 import NumericInputWithCurrency from 'components/Input/NumericInputWithCurrency';
@@ -99,7 +99,7 @@ const CreateOrderCard = ({
 			try {
 				const {
 					snxJS: { Exchanger },
-				} = snxJSConnector;
+				} = hznJSConnector;
 				const feeRateForExchange = await Exchanger.feeRateForExchange(
 					bytesFormatter(quote.name),
 					bytesFormatter(base.name)
@@ -116,7 +116,7 @@ const CreateOrderCard = ({
 	useEffect(() => {
 		const {
 			snxJS: { SystemStatus },
-		} = snxJSConnector;
+		} = hznJSConnector;
 		const getIsSuspended = async () => {
 			try {
 				const [baseResult, quoteResult] = await Promise.all([
@@ -162,7 +162,7 @@ const CreateOrderCard = ({
 		if (!currentWallet) return;
 		const {
 			snxJS: { Exchanger },
-		} = snxJSConnector;
+		} = hznJSConnector;
 		try {
 			const maxSecsLeftInWaitingPeriod = await Exchanger.maxSecsLeftInWaitingPeriod(
 				currentWallet,
@@ -193,7 +193,7 @@ const CreateOrderCard = ({
 			const {
 				snxJS: { Synthetix },
 				utils,
-			} = snxJSConnector;
+			} = hznJSConnector;
 
 			if (!quoteAmount || !quoteBalance || hasSetGasLimit) return;
 			const amountToExchange = tradeAllBalance
@@ -227,7 +227,7 @@ const CreateOrderCard = ({
 		const {
 			snxJS: { Synthetix },
 			utils,
-		} = snxJSConnector;
+		} = hznJSConnector;
 		const transactionId = transactions.length;
 		setTxErrorMessage(null);
 		setIsSubmitting(true);

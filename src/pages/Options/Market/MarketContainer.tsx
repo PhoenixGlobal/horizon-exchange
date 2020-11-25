@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { ethers } from 'ethers';
 
 import binaryOptionMarketContract from 'utils/contracts/binaryOptionsMarketContract';
@@ -29,7 +29,7 @@ const MarketContainer: FC<MarketContainerProps> = ({ match }) => {
 				new ethers.Contract(
 					params.marketAddress,
 					binaryOptionMarketContract.abi,
-					(snxJSConnector as any).provider
+					(hznJSConnector as any).provider
 				)
 			);
 		} else {

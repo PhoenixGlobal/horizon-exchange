@@ -9,7 +9,7 @@ import { getEthRate } from 'ducks/rates';
 import { getWalletBalancesMap } from 'ducks/wallet/walletBalances';
 import { getNetworkId, getWalletInfo } from 'ducks/wallet/walletDetails';
 import { useTranslation } from 'react-i18next';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import {
 	InfoBox,
 	InfoBoxLabel,
@@ -68,7 +68,7 @@ const ModifyCollateral = ({
 	const { collateralCurrencyKey } = collateralPair;
 
 	const handleSubmit = async () => {
-		const { utils, signer } = snxJSConnector;
+		const { utils, signer } = hznJSConnector;
 
 		setTxErrorMessage(null);
 

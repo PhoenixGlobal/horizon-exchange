@@ -5,7 +5,7 @@ import { fetchWalletBalancesRequest } from 'ducks/wallet/walletBalances';
 import { getCurrentWalletAddress } from 'ducks/wallet/walletDetails';
 import { RootState } from 'ducks/types';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import { EXCHANGE_RATES_EVENTS, EXCHANGE_EVENTS } from 'constants/events';
 
@@ -26,7 +26,7 @@ const GlobalEventsGate: FC<GlobalEventsGateProps> = ({
 	useEffect(() => {
 		const {
 			snxJS: { ExchangeRates },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 
 		return () => {
 			Object.values(EXCHANGE_RATES_EVENTS).forEach((event) =>
@@ -40,7 +40,7 @@ const GlobalEventsGate: FC<GlobalEventsGateProps> = ({
 		if (!currentWallet) return;
 		const {
 			snxJS: { Synthetix },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 
 		Synthetix.contract.on(EXCHANGE_EVENTS.SYNTH_EXCHANGE, (address: string) => {
 			if (address === currentWallet) {

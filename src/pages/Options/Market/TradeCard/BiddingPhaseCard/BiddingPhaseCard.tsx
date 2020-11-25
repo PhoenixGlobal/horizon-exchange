@@ -37,7 +37,7 @@ import { formLabelSmallCSS } from 'components/Typography/Form';
 
 import BidNetworkFees from '../components/BidNetworkFees';
 import { useBOMContractContext } from '../../contexts/BOMContractContext';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import {
 	StyledTimeRemaining,
@@ -154,11 +154,11 @@ const BiddingPhaseCard: FC<BiddingPhaseCardProps> = ({
 		const fetchGasLimit = async (isShort: boolean, amount: string) => {
 			const {
 				utils: { parseEther },
-			} = snxJSConnector as any;
+			} = hznJSConnector as any;
 			try {
 				const bidOrRefundAmount =
 					amount === sUSDBalance ? sUSDBalanceBN : parseEther(amount.toString());
-				const BOMContractWithSigner = BOMContract.connect((snxJSConnector as any).signer);
+				const BOMContractWithSigner = BOMContract.connect((hznJSConnector as any).signer);
 				const bidOrRefundFunction = isBid
 					? BOMContractWithSigner.estimate.bid
 					: BOMContractWithSigner.estimate.refund;
@@ -178,7 +178,7 @@ const BiddingPhaseCard: FC<BiddingPhaseCardProps> = ({
 	useEffect(() => {
 		const {
 			snxJS: { sUSD },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 
 		const getAllowance = async () => {
 			const allowance = await sUSD.allowance(currentWalletAddress, BOMContract.address);
@@ -206,7 +206,7 @@ const BiddingPhaseCard: FC<BiddingPhaseCardProps> = ({
 	const handleAllowance = async () => {
 		const {
 			snxJS: { sUSD },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		try {
 			setIsAllowing(true);
 			const maxInt = `0x${'f'.repeat(64)}`;
@@ -224,12 +224,12 @@ const BiddingPhaseCard: FC<BiddingPhaseCardProps> = ({
 	const handleBidOrRefund = async () => {
 		const {
 			utils: { parseEther },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		const amount = isShort ? shortSideAmount : longSideAmount;
 		if (!amount) return;
 		try {
 			setIsBidding(true);
-			const BOMContractWithSigner = BOMContract.connect((snxJSConnector as any).signer);
+			const BOMContractWithSigner = BOMContract.connect((hznJSConnector as any).signer);
 			const bidOrRefundFunction = isBid ? BOMContractWithSigner.bid : BOMContractWithSigner.refund;
 			const bidOrRefundAmount =
 				amount === sUSDBalance ? sUSDBalanceBN : parseEther(amount.toString());
@@ -273,7 +273,7 @@ const BiddingPhaseCard: FC<BiddingPhaseCardProps> = ({
 		const {
 			utils: { parseEther },
 			binaryOptionsUtils: { bidOrRefundForPrice },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		const setPriceAmountFunction = isShort ? setShortPriceAmount : setLongPriceAmount;
 		const setSideAmountFunction = isShort ? setShortSideAmount : setLongSideAmount;
 		const bidPrice = isShort ? shortPrice : longPrice;
@@ -338,7 +338,7 @@ const BiddingPhaseCard: FC<BiddingPhaseCardProps> = ({
 		const {
 			utils: { parseEther },
 			binaryOptionsUtils: { pricesAfterBidOrRefund },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		if (!amount) {
 			setLongPriceAmount('');
 			setShortPriceAmount('');

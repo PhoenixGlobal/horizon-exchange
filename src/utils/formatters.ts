@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import numbro from 'numbro';
 import format from 'date-fns/format';
 
-import snxJSConnector from './snxJSConnector';
+import hznJSConnector from './hznJSConnector';
 import { CurrencyKey } from 'constants/currency';
 import { BigNumberish } from 'ethers/utils';
 
@@ -73,15 +73,15 @@ export const truncateAddress = (address: string, first = 5, last = 5) =>
 	address ? `${address.slice(0, first)}...${address.slice(-last, address.length)}` : null;
 
 export const bytesFormatter = (input: string) =>
-	(snxJSConnector as any).ethersUtils.formatBytes32String(input);
+	(hznJSConnector as any).ethersUtils.formatBytes32String(input);
 
 export const parseBytes32String = (input: string) =>
-	(snxJSConnector as any).ethersUtils.parseBytes32String(input);
+	(hznJSConnector as any).ethersUtils.parseBytes32String(input);
 
 export const bigNumberFormatter = (value: BigNumberish) =>
-	Number((snxJSConnector as any).utils.formatEther(value));
+	Number((hznJSConnector as any).utils.formatEther(value));
 
-export const getAddress = (addr: string) => (snxJSConnector as any).ethersUtils.getAddress(addr);
+export const getAddress = (addr: string) => (hznJSConnector as any).ethersUtils.getAddress(addr);
 
 export const formatTxTimestamp = (timestamp: number | Date) =>
 	format(timestamp, 'MMM d, yy | HH:mm');

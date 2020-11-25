@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import orderBy from 'lodash/orderBy';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import { SynthDefinition } from 'ducks/synths';
 import { RootState } from 'ducks/types';
@@ -48,7 +48,7 @@ export const SynthInfo: FC<SynthInfoProps> = ({ synth, networkId }) => {
 	const assetDesc = synth.description.replace(/^Inverse /, '');
 	const assetSymbol = synth.description !== synth.asset ? ` (${synth.asset})` : '';
 
-	const { snxJS } = snxJSConnector;
+	const { snxJS } = hznJSConnector;
 	// @ts-ignore
 	const contractAddress = snxJS[synth.name].contract.address;
 

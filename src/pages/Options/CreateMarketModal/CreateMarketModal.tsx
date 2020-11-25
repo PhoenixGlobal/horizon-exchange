@@ -29,7 +29,7 @@ import { navigateToOptionsMarket } from 'constants/routes';
 
 import { bigNumberFormatter, parseBytes32String } from 'utils/formatters';
 import { normalizeGasLimit } from 'utils/transactions';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { GWEI_UNIT } from 'utils/networkUtils';
 
 import { lightTheme, darkTheme } from 'styles/theme';
@@ -198,7 +198,7 @@ export const CreateMarketModal: FC<CreateMarketModalProps> = ({
 	const formatCreateMarketArguments = () => {
 		const {
 			utils: { parseEther },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		const longBidAmount: number = (initialFundingAmount as number) * (initialLongShorts.long / 100);
 		const shortBidAmount: number =
 			(initialFundingAmount as number) * (initialLongShorts.short / 100);
@@ -216,7 +216,7 @@ export const CreateMarketModal: FC<CreateMarketModalProps> = ({
 	useEffect(() => {
 		const {
 			snxJS: { sUSD, BinaryOptionMarketManager },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		const getAllowanceForCurrentWallet = async () => {
 			try {
 				const [allowance, fees] = await Promise.all([
@@ -252,7 +252,7 @@ export const CreateMarketModal: FC<CreateMarketModalProps> = ({
 	useEffect(() => {
 		const {
 			snxJS: { BinaryOptionMarketManager },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		if (!isCreatingMarket) return;
 		BinaryOptionMarketManager.contract.on(
 			BINARY_OPTIONS_EVENTS.MARKET_CREATED,
@@ -276,7 +276,7 @@ export const CreateMarketModal: FC<CreateMarketModalProps> = ({
 			if (isButtonDisabled) return;
 			const {
 				snxJS: { BinaryOptionMarketManager },
-			} = snxJSConnector as any;
+			} = hznJSConnector as any;
 			try {
 				const { oracleKey, price, times, bids } = formatCreateMarketArguments();
 				const gasEstimate = await BinaryOptionMarketManager.contract.estimate.createMarket(
@@ -310,7 +310,7 @@ export const CreateMarketModal: FC<CreateMarketModalProps> = ({
 	const handleApproveManager = async () => {
 		const {
 			snxJS: { sUSD, BinaryOptionMarketManager },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		try {
 			setIsManagerApprovalPending(true);
 			const maxInt = `0x${'f'.repeat(64)}`;
@@ -331,7 +331,7 @@ export const CreateMarketModal: FC<CreateMarketModalProps> = ({
 	const handleMarketCreation = async () => {
 		const {
 			snxJS: { BinaryOptionMarketManager },
-		} = snxJSConnector as any;
+		} = hznJSConnector as any;
 		try {
 			const { oracleKey, price, times, bids } = formatCreateMarketArguments();
 			await BinaryOptionMarketManager.createMarket(

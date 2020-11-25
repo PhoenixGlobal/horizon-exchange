@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { connect, ConnectedProps } from 'react-redux';
 import { useQuery } from 'react-query';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import { ReactComponent as InfoRoundedIcon } from 'assets/images/info-rounded.svg';
 
@@ -78,8 +78,8 @@ const Market: FC<MarketProps> = ({ synthsMap, marketAddress }) => {
 				withdrawalsEnabled = await BOMContract.refundsEnabled();
 			} catch (e) {}
 			const [marketData, marketParameters] = await Promise.all([
-				(snxJSConnector as any).binaryOptionsMarketDataContract.getMarketData(marketAddress),
-				(snxJSConnector as any).binaryOptionsMarketDataContract.getMarketParameters(marketAddress),
+				(hznJSConnector as any).binaryOptionsMarketDataContract.getMarketData(marketAddress),
+				(hznJSConnector as any).binaryOptionsMarketDataContract.getMarketParameters(marketAddress),
 			]);
 
 			const { times, oracleDetails, creator, options, fees, creatorLimits } = marketParameters;

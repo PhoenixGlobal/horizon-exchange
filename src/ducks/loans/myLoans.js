@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import keyBy from 'lodash/keyBy';
-import snxJSConnector from '../../utils/snxJSConnector';
+import hznJSConnector from '../../utils/hznJSConnector';
 import { getWalletInfo } from '../wallet/walletDetails';
 import { bigNumberFormatter } from '../../utils/formatters';
 import { getEthRate } from 'ducks/rates';
@@ -77,7 +77,7 @@ const {
 export const fetchLoans = () => async (dispatch, getState) => {
 	const {
 		snxJS: { EtherCollateral, EtherCollateralsUSD },
-	} = snxJSConnector;
+	} = hznJSConnector;
 
 	const state = getState();
 	const ethRate = getEthRate(state);

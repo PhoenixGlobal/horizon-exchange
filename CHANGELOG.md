@@ -160,7 +160,7 @@
 - Fixed "networkName" typo in the redux store.
 - Removed font-awesome (unused dependency).
 - Support absolute "pretty" file imports.
-- Ensure snxJSConnector is initialzied before app rendering.
+- Ensure hznJSConnector is initialzied before app rendering.
 - Introduced redux-saga for handling async events.
 - Introduced redux-toolkit for better developer experience.
 - Refactored currency rendering across the app (icons, names, pairs).
@@ -185,7 +185,7 @@
 - Fixed "networkName" typo in the redux store.
 - Removed font-awesome (unused dependency).
 - Support absolute "pretty" file imports.
-- Ensure snxJSConnector is initialzied before app rendering.
+- Ensure hznJSConnector is initialzied before app rendering.
 - Introduced redux-saga for handling async events.
 - Introduced redux-toolkit for better developer experience.
 - Refactored currency rendering across the app (icons, names, pairs).

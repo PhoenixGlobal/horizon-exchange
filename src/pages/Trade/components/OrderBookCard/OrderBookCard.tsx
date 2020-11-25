@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { TRANSACTION_STATUS } from 'constants/transaction';
 
 import { DataSmall } from 'components/Typography';
@@ -82,7 +82,7 @@ const OrderBookCard: FC<OrderBookCardProps> = ({
 			const {
 				// @ts-ignore
 				utils: { waitForTransaction },
-			} = snxJSConnector;
+			} = hznJSConnector;
 			try {
 				if (pendingTransactions.length === 0) return;
 				const latestTransactionHash = pendingTransactions[pendingTransactions.length - 1];

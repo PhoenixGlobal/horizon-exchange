@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { GWEI_UNIT } from 'utils/networkUtils';
 import { normalizeGasLimit } from 'utils/transactions';
 import { getCurrencyKeyBalance } from 'utils/balances';
@@ -75,7 +75,7 @@ export const CreateLoanCardsUSD = ({
 	};
 
 	const handleSubmit = async () => {
-		const { utils, signer } = snxJSConnector;
+		const { utils, signer } = hznJSConnector;
 
 		setTxErrorMessage(null);
 

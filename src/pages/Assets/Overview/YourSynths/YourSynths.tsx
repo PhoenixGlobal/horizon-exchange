@@ -35,7 +35,7 @@ import {
 
 import { hasMetamaskInstalled } from 'utils/networkUtils';
 import { getCurrencyKeyURLPath } from 'utils/currency';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import { CRYPTO_CURRENCY_MAP, SYNTHS_MAP, CurrencyKey, USD_SIGN } from 'constants/currency';
 import Spinner from 'components/Spinner';
@@ -86,7 +86,7 @@ export const YourSynths: FC<YourSynthsProps> = memo(
 
 		const handleAddToMetamask = async (currencyKey: string) => {
 			try {
-				const { snxJS } = snxJSConnector as any;
+				const { snxJS } = hznJSConnector as any;
 				const synthContract = snxJS[currencyKey].contract;
 				const wasAdded = await window?.ethereum?.request({
 					method: 'wallet_watchAsset',

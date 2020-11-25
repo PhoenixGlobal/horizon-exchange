@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import compact from 'lodash/compact';
 
 import { getGasInfo } from 'utils/networkUtils';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 
 import { bytesFormatter, bigNumberFormatter, parseBytes32String } from 'utils/formatters';
 
@@ -14,7 +14,7 @@ const getNetworkPrices = async () => {
 };
 
 const getFrozenSynths = async () => {
-	const frozenSynths = await (snxJSConnector as any).synthSummaryUtilContract.frozenSynths();
+	const frozenSynths = await (hznJSConnector as any).synthSummaryUtilContract.frozenSynths();
 
 	return compact(frozenSynths.map(parseBytes32String));
 };
@@ -45,8 +45,8 @@ export const fetchSynthsBalance = async (walletAddress: string) => {
 	> = {};
 
 	const [balanceResults, totalBalanceResults] = await Promise.all([
-		(snxJSConnector as any).synthSummaryUtilContract.synthsBalances(walletAddress),
-		(snxJSConnector as any).synthSummaryUtilContract.totalSynthsInKey(
+		(hznJSConnector as any).synthSummaryUtilContract.synthsBalances(walletAddress),
+		(hznJSConnector as any).synthSummaryUtilContract.totalSynthsInKey(
 			walletAddress,
 			bytesFormatter(SYNTHS_MAP.sUSD)
 		),
@@ -70,8 +70,8 @@ export const fetchSynthsBalance = async (walletAddress: string) => {
 };
 
 export const fetchEthBalance = async (walletAddress: string) => {
-	const balance = await (snxJSConnector as any).provider.getBalance(walletAddress);
-	const usdBalance = await (snxJSConnector as any).snxJS.ExchangeRates.effectiveValue(
+	const balance = await (hznJSConnector as any).provider.getBalance(walletAddress);
+	const usdBalance = await (hznJSConnector as any).snxJS.ExchangeRates.effectiveValue(
 		bytesFormatter(SYNTHS_MAP.sETH),
 		balance,
 		bytesFormatter(SYNTHS_MAP.sUSD)

@@ -21,7 +21,7 @@ import { getLoansCollateralPair } from 'ducks/loans/contractInfo';
 import { getGasInfo } from 'ducks/transaction';
 import NumericInputWithCurrency from 'components/Input/NumericInputWithCurrency';
 import { getCurrencyKeyBalance } from 'utils/balances';
-import snxJSConnector from 'utils/snxJSConnector';
+import hznJSConnector from 'utils/hznJSConnector';
 import { GWEI_UNIT } from 'utils/networkUtils';
 import { normalizeGasLimit } from 'utils/transactions';
 import { getEtherscanTxLink } from 'utils/explorers';
@@ -57,7 +57,7 @@ const LiquidateCard = ({
 		const {
 			snxJS: { EtherCollateralsUSD },
 			utils,
-		} = snxJSConnector;
+		} = hznJSConnector;
 
 		setTxErrorMessage(null);
 

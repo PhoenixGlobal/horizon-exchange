@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import snxJSConnector from '../../utils/snxJSConnector';
+import hznJSConnector from '../../utils/hznJSConnector';
 import { bigNumberFormatter } from '../../utils/formatters';
 
 import { CRYPTO_CURRENCY_MAP, SYNTHS_MAP } from '../../constants/currency';
@@ -66,7 +66,7 @@ const {
 export const fetchLoansContractInfo = () => async (dispatch, getState) => {
 	const {
 		snxJS: { EtherCollateral, EtherCollateralsUSD },
-	} = snxJSConnector;
+	} = hznJSConnector;
 	let contract;
 
 	const state = getState();
@@ -84,7 +84,7 @@ export const fetchLoansContractInfo = () => async (dispatch, getState) => {
 	try {
 		const [contractInfo, lockedETHBalance] = await Promise.all([
 			contract.getContractInfo(),
-			snxJSConnector.provider.getBalance(contract.address),
+			hznJSConnector.provider.getBalance(contract.address),
 		]);
 
 		const collateralPair = {
